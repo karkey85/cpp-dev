@@ -6,6 +6,9 @@ namespace openlib {
         T* m_ptr;
 	 
         public:
+            unique_ptr(const unique_ptr&) = delete;
+            unique_ptr & operator=(const unique_ptr&) = delete;
+
             unique_ptr(T *ptr = nullptr):m_ptr(ptr) {
             }
 	 
