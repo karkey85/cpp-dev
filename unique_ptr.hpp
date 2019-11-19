@@ -15,7 +15,22 @@ namespace openlib {
             ~unique_ptr() {
                 reset();
             }
-	 
+    
+            unique_ptr(unique_ptr&& other) {
+              reset();
+              m_ptr = other.release();
+            }
+
+            unique_ptr& operator=(unique_ptr&& other) {
+              reset();
+              m_ptr = other.release();
+              return *this;
+            }
+
+            void swap(unique_ptr& other) {
+               std::swap(*this,other);
+            }
+    
             T& operator *() { return (*m_ptr);}
             T* operator ->() { return m_ptr;}
             T* get() { return m_ptr;}
