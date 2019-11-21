@@ -8,8 +8,10 @@ namespace openlib {
         public:
             unique_ptr(const unique_ptr&) = delete;
             unique_ptr & operator=(const unique_ptr&) = delete;
-
-            unique_ptr(T *ptr = nullptr):m_ptr(ptr) {
+            
+            // No implicit conversions allowed. Need to call with
+            // exact type along with constructor
+            explicit unique_ptr(T *ptr = nullptr):m_ptr(ptr) {
             }
 	 
             ~unique_ptr() {
